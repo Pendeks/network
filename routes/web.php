@@ -6,10 +6,13 @@ use App\Http\Controllers\TimelineController;
 
 
 Route::view('/', 'welcome');
+Route::middleware('auth')->group(function() {
 
-Route :: get('timeline', TimelineController :: class)->name('timeline');
+    Route :: get('timeline', TimelineController :: class)->name('timeline');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+});
 
 
-Route::view('/dashboard', 'dashboard')->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
